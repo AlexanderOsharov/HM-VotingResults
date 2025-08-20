@@ -11,6 +11,7 @@ body {
   color: #333;
   min-height: 100vh;
   padding-bottom: 80px;
+  overflow-x: hidden; /* Предотвращает горизонтальную прокрутку */
 }
 
 /* Header */
@@ -54,6 +55,7 @@ header {
   font-size: 0.9rem;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
   .stat-item:hover {
@@ -84,6 +86,8 @@ main {
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer; /* Показывает, что элемент кликабелен */
+  position: relative;
 }
 
   .chart-card:hover {
@@ -107,6 +111,7 @@ main {
     font-weight: 600;
     font-size: 1.3rem;
     margin: 0;
+    flex-grow: 1;
   }
 
 .chart-badge {
@@ -124,6 +129,8 @@ main {
   background: white;
   min-height: 350px;
   border-radius: 0 0 20px 20px;
+  position: relative;
+  overflow: hidden;
 }
 
   .chart-wrapper iframe {
@@ -132,39 +139,106 @@ main {
     border: none;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* Предотвращаем скроллинг внутри iframe */
+    overflow: hidden;
+    position: relative;
   }
 
-/* Footer */
-footer {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  color: white;
-  text-align: center;
-  padding: 20px;
+/* Modal Styles */
+.modal {
+  display: none;
   position: fixed;
+  z-index: 10000;
   left: 0;
-  bottom: 0;
+  top: 0;
   width: 100%;
-  z-index: 1000;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  animation: fadeIn 0.3s ease;
 }
 
-.footer-content {
+.modal-content {
+  background-color: #fff;
+  margin: 2% auto;
+  padding: 0;
+  border-radius: 15px;
+  width: 90%;
   max-width: 1200px;
-  margin: 0 auto;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  animation: slideIn 0.3s ease;
+  position: relative;
+}
+
+.modal-header {
+  background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1001;
 }
 
-.footer-left p, .footer-right p {
-  margin: 0;
-  font-size: 0.9rem;
+  .modal-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 0;
+  line-height: 1;
 }
 
-/* Анимации */
+  .close-btn:hover {
+    transform: rotate(90deg);
+  }
+
+.modal-body {
+  padding: 0;
+  overflow: hidden;
+  height: calc(90vh - 80px);
+}
+
+  .modal-body iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    min-height: 500px;
+  }
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -202,6 +276,40 @@ footer {
     animation-delay: 0.5s;
   }
 
+/* Footer */
+footer {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  /* Добавляем защиту от прозрачности */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 0 20px;
+}
+
+.footer-left p, .footer-right p {
+  margin: 0;
+  font-size: 0.9rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
   .header-content h1 {
@@ -236,6 +344,16 @@ footer {
   .footer-content {
     flex-direction: column;
     gap: 10px;
+    padding: 10px;
+  }
+
+  .modal-content {
+    width: 95%;
+    margin: 2.5% auto;
+  }
+
+  .modal-header h3 {
+    font-size: 1.2rem;
   }
 }
 
@@ -256,6 +374,10 @@ footer {
     font-size: 0.8rem;
     padding: 6px 12px;
   }
+
+  .modal-body iframe {
+    min-height: 400px;
+  }
 }
 
 /* Дополнительные стили для лучшего визуального эффекта */
@@ -274,4 +396,26 @@ footer {
 
 .chart-card:hover::before {
   opacity: 1;
+}
+
+/* Проблема с прокруткой диаграмм */
+.chart-wrapper iframe {
+  /* Убираем возможные скроллы */
+  overflow: hidden !important;
+  /* Добавляем свойства для лучшего отображения */
+  min-width: 100%;
+  min-height: 100%;
+  /* Позволяем содержимому масштабироваться */
+  transform-origin: 0 0;
+}
+
+/* Улучшенное отображение в мобильных браузерах */
+@media (max-width: 480px) {
+  .chart-wrapper iframe {
+    height: 220px !important;
+  }
+
+  .modal-body iframe {
+    height: calc(90vh - 80px) !important;
+  }
 }

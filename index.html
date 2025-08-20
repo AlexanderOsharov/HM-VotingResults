@@ -21,7 +21,7 @@
   </header>
   <main>
     <section class="charts-container">
-      <div class="chart-card">
+      <div class="chart-card" data-chart-id="1">
         <div class="chart-header">
           <h2><i class="fas fa-chart-bar"></i> Участие в голосовании</h2>
           <span class="chart-badge">Активность</span>
@@ -31,7 +31,7 @@
         </div>
       </div>
 
-      <div class="chart-card">
+      <div class="chart-card" data-chart-id="2">
         <div class="chart-header">
           <h2><i class="fas fa-chart-line"></i> Тренды</h2>
           <span class="chart-badge">Динамика</span>
@@ -41,7 +41,7 @@
         </div>
       </div>
 
-      <div class="chart-card">
+      <div class="chart-card" data-chart-id="3">
         <div class="chart-header">
           <h2><i class="fas fa-chart-pie"></i> Распределение</h2>
           <span class="chart-badge">Сегментация</span>
@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <div class="chart-card">
+      <div class="chart-card" data-chart-id="4">
         <div class="chart-header">
           <h2><i class="fas fa-chart-area"></i> Динамика развития</h2>
           <span class="chart-badge">Тренды</span>
@@ -61,7 +61,7 @@
         </div>
       </div>
 
-      <div class="chart-card">
+      <div class="chart-card" data-chart-id="5">
         <div class="chart-header">
           <h2><i class="fas fa-chart-network"></i> Взаимосвязи</h2>
           <span class="chart-badge">Аналитика</span>
@@ -72,6 +72,20 @@
       </div>
     </section>
   </main>
+
+  <!-- Модальное окно для полноразмерного просмотра -->
+  <div id="fullscreen-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Диаграмма</h3>
+        <button class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <iframe id="fullscreen-iframe" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-content">
       <div class="footer-left">
@@ -82,5 +96,47 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Открытие диаграммы в полноразмерном режиме
+    document.querySelectorAll('.chart-card').forEach(card => {
+      card.addEventListener('click', function (e) {
+        if (e.target.tagName !== 'IFRAME' && e.target.tagName !== 'BUTTON') {
+          const chartId = this.getAttribute('data-chart-id');
+          const title = this.querySelector('h2').textContent;
+          const iframeSrc = this.querySelector('iframe').src;
+
+          document.getElementById('modal-title').textContent = title;
+          document.getElementById('fullscreen-iframe').src = iframeSrc;
+
+          document.getElementById('fullscreen-modal').style.display = 'block';
+          document.body.style.overflow = 'hidden'; // Запрет прокрутки фона
+        }
+      });
+    });
+
+    // Закрытие модального окна
+    document.querySelector('.close-btn').addEventListener('click', function () {
+      document.getElementById('fullscreen-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
+
+    // Закрытие по клику вне модального окна
+    window.addEventListener('click', function (event) {
+      const modal = document.getElementById('fullscreen-modal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Закрытие ESC клавишей
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        document.getElementById('fullscreen-modal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+  </script>
 </body>
 </html>
