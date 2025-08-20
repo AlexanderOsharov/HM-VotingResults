@@ -1,34 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Результаты голосования</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/icon.png" type="image/x-icon">
+  <title>Результаты голосования</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>Результаты голосования</h1>
-    </header>
-    <main>
-        <section class="chart" id="chart1">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQsguQ4U0oUB1REaM9KpvVruWd6Kg5R59oIpfvf3mnGIpaRVXUJ4-JFdGFWpdBQUcS36Xc-PxNW6Dsp/pubchart?oid=1845240387&format=interactive" frameborder="0"></iframe>
-        </section>
-        <section class="chart" id="chart2">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQsguQ4U0oUB1REaM9KpvVruWd6Kg5R59oIpfvf3mnGIpaRVXUJ4-JFdGFWpdBQUcS36Xc-PxNW6Dsp/pubchart?oid=1301164648&format=interactive" frameborder="0"></iframe>
-        </section>
-        <section class="chart" id="chart3">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQsguQ4U0oUB1REaM9KpvVruWd6Kg5R59oIpfvf3mnGIpaRVXUJ4-JFdGFWpdBQUcS36Xc-PxNW6Dsp/pubchart?oid=16471143&format=interactive" frameborder="0"></iframe>
-        </section>
-        <section class="chart" id="chart4">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQsguQ4U0oUB1REaM9KpvVruWd6Kg5R59oIpfvf3mnGIpaRVXUJ4-JFdGFWpdBQUcS36Xc-PxNW6Dsp/pubchart?oid=39580622&format=interactive" frameborder="0"></iframe>
-        </section>
-        <section class="chart" id="chart5">
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQsguQ4U0oUB1REaM9KpvVruWd6Kg5R59oIpfvf3mnGIpaRVXUJ4-JFdGFWpdBQUcS36Xc-PxNW6Dsp/pubchart?oid=884575574&format=interactive" frameborder="0"></iframe>
-        </section>
-    </main>
-    <footer>
-        <p>© 2024 Все права защищены</p>
-    </footer>
+  <header>
+    <div class="header-content">
+      <h1><i class="fas fa-poll"></i> Результаты голосования</h1>
+      <div class="header-stats">
+        <span class="stat-item"><i class="fas fa-users"></i> 1,247 участников</span>
+        <span class="stat-item"><i class="fas fa-clock"></i> Обновлено: сегодня</span>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="charts-container">
+      <div class="chart-card">
+        <div class="chart-header">
+          <h2><i class="fas fa-chart-bar"></i> Участие в голосовании</h2>
+          <span class="chart-badge">Активность</span>
+        </div>
+        <div class="chart-wrapper">
+          <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQsguQ4U0oUB1REaM9KpvVruWd6Kg5R59oIpfvf3mnGIpaRVXUJ4-JFdGFWpdBQUcS36Xc-PxNW6Dsp/pubchart?oid=1845240387&format=interactive" frameborder="0"></iframe>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <h2><i class="fas fa-chart-line"></i> Тренды</h2>
+          <span class="chart-badge">Динамика</span>
+        </div>
+        <div class="chart-wrapper">
+          <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQsguQ4U0oUB1REaM9KpvVruWd6Kg5R59oIpfvf3mnGIpaRVXUJ4-JFdGFWpdBQUcS36Xc-PxNW6Dsp/pubchart?oid=1301164648&format=interactive" frameborder="0"></iframe>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <h2><i class="fas fa-chart-pie"></i> Распределение</h2>
+          <span class="chart-badge">Сегментация</span>
+        </div>
+        <div class="chart-wrapper">
+          <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQsguQ4U0oUB1REaM9KpvVruWd6Kg5R59oIpfvf3mnGIpaRVXUJ4-JFdGFWpdBQUcS36Xc-PxNW6Dsp/pubchart?oid=16471143&format=interactive" frameborder="0"></iframe>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <h2><i class="fas fa-chart-area"></i> Динамика развития</h2>
+          <span class="chart-badge">Тренды</span>
+        </div>
+        <div class="chart-wrapper">
+          <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQsguQ4U0oUB1REaM9KpvVruWd6Kg5R59oIpfvf3mnGIpaRVXUJ4-JFdGFWpdBQUcS36Xc-PxNW6Dsp/pubchart?oid=39580622&format=interactive" frameborder="0"></iframe>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <h2><i class="fas fa-chart-network"></i> Взаимосвязи</h2>
+          <span class="chart-badge">Аналитика</span>
+        </div>
+        <div class="chart-wrapper">
+          <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQsguQ4U0oUB1REaM9KpvVruWd6Kg5R59oIpfvf3mnGIpaRVXUJ4-JFdGFWpdBQUcS36Xc-PxNW6Dsp/pubchart?oid=884575574&format=interactive" frameborder="0"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <p><i class="fas fa-copyright"></i> 2025 Все права защищены</p>
+      </div>
+      <div class="footer-right">
+        <p>Создано с <i class="fas fa-heart" style="color: #ff6b6b;"></i> для сообщества</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
